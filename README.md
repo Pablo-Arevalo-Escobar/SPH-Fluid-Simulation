@@ -4,8 +4,8 @@ A ,real time, GPU-based fluid simulation using smooth particle hydrodynamics don
 The project is written in c++ and the rendering is done using OpenGl, all SPH computations occur in the GPU through the use of compute shaders.
 
 
-
-![](docs/collision.png)
+![](images/FluidSim.png)
+![](images/collision.png)
 
 ### External Libraries Used
 - GLFW
