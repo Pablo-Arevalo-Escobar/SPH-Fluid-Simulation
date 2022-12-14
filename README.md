@@ -7,7 +7,6 @@ The project is written in c++ and the rendering is done using OpenGl, all SPH co
 
 ![](docs/collision.png)
 
-
 ### External Libraries Used
 - GLFW
 - Glad
@@ -26,3 +25,21 @@ The scale of the bounding box can be manipulated in real time, the outline can a
 #### Object Tuning
 An object can also be added to the scene, this object can collide with the smoothed particles and multiple
 object configurations can be explored
+
+### References and Attributions
+
+#### LearnOpenGL
+The camera, shader, and compute shader class used in this project are taken from the OpenGl tutorial series LearnOpenGL.
+The classes have been slightly modified to provide functionality specific to my use case.
+https://learnopengl.com/Getting-started/Camera
+https://learnopengl.com/Getting-started/Shaders
+https://learnopengl.com/Guest-Articles/2022/Compute-Shaders/Introduction
+
+#### OpenGlTutorial
+The following learn-opengl tutorial was used to guide my implementation of the billboarded spheres used for rendering.
+http://www.opengl-tutorial.org/intermediate-tutorials/billboards-particles/billboards/
+
+#### Fluid Engine Development
+The following book by doyub-kim was used to learn about smooth particle hydrodynamics and the smoothing kernels used in this project
+are taken directly from this source.
+Kim, D. (2017). Fluid Engine Development (1st ed.). A K Peters/CRC Press. https://doi.org/10.1201/b22137
