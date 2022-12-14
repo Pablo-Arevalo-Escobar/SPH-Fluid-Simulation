@@ -1,0 +1,177 @@
+#version 430 core
+
+layout(local_size_x = 1536, local_size_y = 1, local_size_z = 1) in;
+
+layout(std430, binding = 0) buffer Pos
+{
+	vec4 pos [];
+};
+layout(std430, binding = 1) buffer velocity
+{
+	vec4 vel [];
+};
+layout(std430, binding = 2) buffer force
+{
+	vec4 f [];
+};
+layout(std430, binding = 3) buffer density
+{
+	float rho [];
+};
+layout(std430, binding = 5) buffer color
+{
+	vec4 col [];
+};
+
+
+
+
+// ----------------------------------------------------------------------------
+//
+// uniforms
+//
+// ----------------------------------------------------------------------------
+uniform float DT;
+uniform float EPS;
+uniform float BOUND_DAMPING;
+uniform float RESTITUTION_COEFFICIENT;
+
+uniform vec3 BOUND_BOX_POS;
+uniform vec3 BOUND_BOX_SCALE;
+uniform bool hasExtern;
+uniform vec3 EXTERN_BOX_POS;
+uniform vec3 EXTERN_BOX_SCALE;
+uniform float radius;
+
+
+// ----------------------------------------------------------------------------
+//
+// functions
+//
+// ----------------------------------------------------------------------------
+
+//Basic axis to test collision handling methods
+vec3 compasss[6] = {
+    {0,1,0},{0,-1,0},
+    {0,0,1},{0,0,-1},
+    {1,0,0},{-1,0,0}
+};
+
+
+
+void collision_handling(uint i, vec3 BOX_POS, vec3 BOX_SCALE)
+{   
+    float frictionForce = 0.5;
+    // Compute distance between centers
+    vec3 BC = pos[i].xyz-BOX_POS;
+    // Clamp values to half box width, length, and depth
+    vec3 clamped = clamp( BC, -(0.5*BOX_SCALE),(0.5*BOX_SCALE));
+    vec3 P = BOX_POS + clamped;
+    //Check that the distance between the particle and the point P on the surface is less than the distance
+    vec3 targetVector = P-pos[i].xyz;
+    float dist = length(targetVector);
+
+    if(dist < radius)
+    {
+        //Compute the closest axis (the normal of the surface)
+        float maxVal = 0;
+        vec3 axis;
+        for(int i=0;i<6;i++){
+            float dotProduct = dot( normalize(targetVector),compasss[i]);
+            if( dotProduct > maxVal) {
+                maxVal =dotProduct;
+                axis = compasss[i];
+            }
+        }
+
+        dist = 0;
+        float boundaryDistance = radius+radius/2;
+        //Resolve the force in the relative direction
+        if(abs(axis.y) == 1) {
+            if(axis.y == 1) {
+                pos[i].y = P.y - (boundaryDistance);
+            }
+            else {
+                pos[i].y = P.y  + (boundaryDistance);
+            }
+            vel[i].y *= RESTITUTION_COEFFICIENT;
+            vel[i].x = min(frictionForce*vel[i].y, vel[i].x);
+            vel[i].z = min(frictionForce*vel[i].y, vel[i].z);
+
+        }
+        if(abs(axis.x) == 1) {
+            if(axis.x == 1) {
+                pos[i].x =P.x - (boundaryDistance);
+            }
+            else {
+                pos[i].x = P.x + (boundaryDistance);
+            }
+            vel[i].x *= RESTITUTION_COEFFICIENT;
+            vel[i].y = min(frictionForce*vel[i].x, vel[i].y);
+            vel[i].z = min(frictionForce*vel[i].x, vel[i].z);
+
+        }
+        else {
+            if(axis.z == 1) {
+                pos[i].z = P.z - (boundaryDistance);
+            }
+            else {
+                pos[i].z = P.z +(boundaryDistance);
+            }
+            vel[i].z *= RESTITUTION_COEFFICIENT;
+            vel[i].y = min(frictionForce*vel[i].z, vel[i].y);
+            vel[i].x = min(frictionForce*vel[i].z, vel[i].x);
+        }
+    }
+   
+}
+
+void boundary_handling(uint i, vec3 BOX_POS, vec3 BOX_SCALE)
+{
+    if (pos[i].y - radius < (BOX_POS.y - (BOX_SCALE.y / 2)))
+    {
+        pos[i].y = BOX_POS.y - (BOX_SCALE.y / 2) + radius;
+        vel[i].y *= RESTITUTION_COEFFICIENT;
+    }
+
+    if (pos[i].x + radius > (BOX_POS.x + (BOX_SCALE.x / 2)))
+    {
+        pos[i].x = BOX_POS.x + (BOX_SCALE.x / 2) - radius;
+        vel[i].x *= RESTITUTION_COEFFICIENT;
+    }
+    if (pos[i].x - radius < (BOX_POS.x - (BOX_SCALE.x / 2)))
+    {
+        pos[i].x = BOX_POS.x - (BOX_SCALE.x / 2) + radius;
+        vel[i].x *= RESTITUTION_COEFFICIENT;
+    }
+    if (pos[i].z + radius > (BOX_POS.z + (BOX_SCALE.z / 2)))
+    {
+        pos[i].z = BOX_POS.z + (BOX_SCALE.z / 2) - radius;
+        vel[i].z *= RESTITUTION_COEFFICIENT;
+    }
+    if (pos[i].z - radius < (BOX_POS.z - (BOX_SCALE.z / 2)))
+    {
+        pos[i].z = BOX_POS.z - (BOX_SCALE.z / 2) + radius;
+        vel[i].z *= RESTITUTION_COEFFICIENT;
+    }
+}
+
+
+void main()
+{
+	uint i = uint(gl_GlobalInvocationID.x);
+    //Integration
+    vel[i] += DT * (f[i] / rho[i]);
+    pos[i] += DT * vel[i];
+
+    //Collisions
+    if(hasExtern){
+        collision_handling(i,EXTERN_BOX_POS,EXTERN_BOX_SCALE);
+    }
+
+    boundary_handling(i, BOUND_BOX_POS, BOUND_BOX_SCALE);
+    
+    //Color rendering
+    float b = clamp(((pos[i].y+(BOUND_BOX_SCALE.y/4))/(BOUND_BOX_SCALE.y*2)),0,1);
+    col[i] = vec4(0.0,0.0,b,0);
+}
