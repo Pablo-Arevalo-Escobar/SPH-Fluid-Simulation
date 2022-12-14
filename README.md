@@ -35,6 +35,10 @@ https://learnopengl.com/Getting-started/Camera
 https://learnopengl.com/Getting-started/Shaders
 https://learnopengl.com/Guest-Articles/2022/Compute-Shaders/Introduction
 
+LearnOpenGl code is available for use under the following liscence:
+
+https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
 #### OpenGlTutorial
 The following learn-opengl tutorial was used to guide my implementation of the billboarded spheres used for rendering.
 http://www.opengl-tutorial.org/intermediate-tutorials/billboards-particles/billboards/
