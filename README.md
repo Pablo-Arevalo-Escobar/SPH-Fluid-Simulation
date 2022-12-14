@@ -1,7 +1,5 @@
 # SPH
-A real time, GPU-based, fluid simulation using smooth particle hydrodynamics done as a solo project for my Computer Animation (COMP 6311) class in Concordia University, Montreal.
-
-The project is written in c++ and the rendering is done using OpenGl, all SPH computations occur in the GPU through the use of compute shaders.
+A real time, GPU-based, fluid simulation using smooth particle hydrodynamics done as a solo project for my Computer Animation (COMP 6311) class in Concordia University, Montreal. The project is written in c++ and the rendering is done using OpenGl, all SPH computations occur in the GPU through the use of compute shaders, nearest neighbour computations are also done through the use of multiple compute shaders. The simulation is able to render more than 100,000 particles in real time because of the parallel nature of the GPU. 
 
 
 ![](images/FluidSim.png)
