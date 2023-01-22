@@ -65,59 +65,7 @@ void SPH::initComputeShaders() {
     glBufferData(GL_SHADER_STORAGE_BUFFER, PARTICLE_COUNT * sizeof(unsigned int), &cellParticleIndex[0], GL_DYNAMIC_DRAW);
 }
 
-void SPH::initSPHWicked() {
-    ComputeShader  compDensityPressure = ComputeShader("src/shader/sph/Wicked/wicked_comp_density.comp");
-    ComputeShader  compForces = ComputeShader("src/shader/sph/Wicked/wicked_comp_force.comp");
 
-
-
-    compCellPartitioning.use();
-    compCellPartitioning.setIVec3("grid_resolution", GRID_RESOLUTION);
-    compCellPartitioning.setFloat("grid_spacing", grid_spacing);
-
-    compCellAllocation.use();
-    compCellAllocation.setIVec3("grid_resolution", GRID_RESOLUTION);
-
-
-    compCellBinning.use();
-    compCellBinning.setFloat("grid_spacing", grid_spacing);
-    compCellBinning.setIVec3("grid_resolution", GRID_RESOLUTION);
-
-
-    compDensityPressure.use();
-    compForces.setFloat("H", H);
-    compDensityPressure.setIVec3("grid_resolution", GRID_RESOLUTION);
-    compDensityPressure.setFloat("grid_spacing", grid_spacing);
-    compDensityPressure.setInt("size_of_extern", 0);
-    compDensityPressure.setInt("num_of_particles", PARTICLE_COUNT);
-    compDensityPressure.setFloat("HSQ", HSQ);
-    compDensityPressure.setFloat("MASS", MASS);
-    compDensityPressure.setFloat("KERNEL", KERNEL_MULLER);
-    compDensityPressure.setFloat("GAS_CONSTANT", K);
-    compDensityPressure.setFloat("REST_DENSITY", REST_DENSITY);
-
-    compForces.use();
-    compForces.setIVec3("grid_resolution", GRID_RESOLUTION);
-    compForces.setFloat("grid_spacing", grid_spacing);
-    compForces.setInt("num_of_particles", PARTICLE_COUNT);
-    compForces.setFloat("H", H);
-    compForces.setFloat("MASS", MASS);
-    compForces.setFloat("KERNEL_GRAD", SPIKY_GRAD);
-    compForces.setFloat("VISC_LAP", VISC_LAP);
-    compForces.setFloat("G", G);
-    compForces.setFloat("VISC", VISC);
-    compForces.setFloat("GAS_CONSTANT", K);
-    compForces.setFloat("REST_DENSITY", REST_DENSITY);
-
-    compIntegration.use();
-    compIntegration.setBool("hasExtern", false);
-    compIntegration.setFloat("DT", DT);
-    compIntegration.setFloat("radius", EPS);
-    compIntegration.setFloat("RESTITUTION_COEFFICIENT", RESTITUTION_COEFFICIENT);
-    compIntegration.setVec3("BOUND_BOX_POS", box.position);
-    compIntegration.setVec3("BOUND_BOX_SCALE", box.scale);
-
-}
 
 
 void SPH::initSPHBasic() {
