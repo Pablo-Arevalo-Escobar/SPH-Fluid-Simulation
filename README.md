@@ -31,10 +31,6 @@ Contents:
 
 ### Videos 
 
-### External Libraries Used
-- GLFW
-- Glad
-- ImGui
 
 
 ### Setup Guide
@@ -64,6 +60,13 @@ The scale of the bounding box can be manipulated in real time, the outline can a
 #### Object Tuning
 An object can also be added to the scene, this object can collide with the smoothed particles and multiple
 object configurations can be explored
+
+
+### External Libraries Used
+- GLFW
+- Glad
+- ImGui
+
 
 ### References and Attributions
 
