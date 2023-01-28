@@ -51,6 +51,12 @@ https://user-images.githubusercontent.com/63361048/215293476-6ee23b1d-3c10-4e40-
       
 ### Using the program:
   Simply download the SPH folder and launch the executable. (NOTE: It is important that you launch the executable in the folder provided otherwise it   will be unable to locate the shader files)
+  
+### Controls
+ - Press G to toggle the camera/mouse movement
+ - Use the arrow keys to move an object along the x and y axis (once you create an object)
+ - Use Q and E to move and object along the z axis
+ - Create an object by either loading one of the scenes in the simulation paramters or going into object parameters and adding a barrier
       
       
 
