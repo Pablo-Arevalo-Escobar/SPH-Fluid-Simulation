@@ -46,6 +46,8 @@ https://user-images.githubusercontent.com/63361048/215293476-6ee23b1d-3c10-4e40-
 
 #### Requirements:
 
+ - Windows OS (10+)
+
  - Minimum 1536 work groups supported by the GPU 
     - This program makes use of compute shaders through OpenGL. At the momment, the number of work groups in the shader is set to 1536.
       If your GPU supports less than 1536 work groups then you will have to go into the .comp files included in the project and change the 
