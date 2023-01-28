@@ -1,14 +1,55 @@
 # SPH
 A real time, GPU-based, fluid simulation using smooth particle hydrodynamics done as a solo project for my Computer Animation (COMP 6311) class in Concordia University, Montreal. The project is written in C++ and the rendering is done using OpenGl, all SPH computations occur in the GPU through the use of compute shaders, nearest neighbour computations are also done through the use of multiple compute shaders. The simulation is able to render more than 100,000 particles in real time because of the parallel nature of the GPU. 
 
+Contents:
+
+- [Images](#images)
+
+
+- [Videos](#videos)
+
+
+- [Setup Guide](#setup_guide)
+
+
+- [Functionality](#functionality)
+
+
+- [External Libraries](#external_libraries)
+
+
+- [References](#references_and_attributions)
+
+
+
+
+### Images 
 
 ![](images/FluidSim.png)
 ![](images/collision.png)
+
+
+### Videos 
 
 ### External Libraries Used
 - GLFW
 - Glad
 - ImGui
+
+
+### Setup Guide
+
+#### Requirements:
+
+ - Minimum 1536 work groups supported by the GPU 
+    - This program makes use of compute shaders through OpenGL. At the momment, the number of work groups in the shader is set to 1536.
+      If your GPU supports less than 1536 work groups then you will have to go into the .comp files included in the project and change the 
+      work group size in local_size_x. 
+      
+#### Using the program:
+  Simply download the SPH folder and launch the executable. (NOTE: It is important that you launch the executable in the folder provided otherwise it   will be unable to locate the shader files)
+      
+      
 
 ### Functionality
 
