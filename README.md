@@ -30,8 +30,15 @@ Contents:
 
 
 ### Videos 
-![](videos/collision.mkv)
-![](videos/WaveGenerator.mkv)
+
+https://user-images.githubusercontent.com/63361048/215293472-1cc3614a-0f61-4051-bbd6-c7e501cec304.mp4
+
+
+https://user-images.githubusercontent.com/63361048/215293476-6ee23b1d-3c10-4e40-82f6-2c35470af15c.mp4
+
+
+
+
 
 
 
