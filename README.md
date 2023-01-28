@@ -15,7 +15,7 @@ Contents:
 - [Functionality](#functionality)
 
 
-- [External Libraries](#external-libraries)
+- [External Libraries](#external-libraries-used)
 
 
 - [References](#references-and-attributions)
