@@ -15,6 +15,9 @@ A real time, GPU-based, fluid simulation using smooth particle hydrodynamics don
 - [Functionality](#functionality)
 
 
+- [Report](#report)
+
+
 - [External Libraries](#external-libraries-used)
 
 
@@ -74,6 +77,8 @@ The scale of the bounding box can be manipulated in real time, the outline can a
 An object can also be added to the scene, this object can collide with the smoothed particles and multiple
 object configurations can be explored
 
+## Report
+[SPHSimulationsOnTheGPU.pdf](SPHSimulationsOnTheGPU.pdf)
 
 ## External Libraries Used
 - GLFW
