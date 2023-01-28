@@ -9,16 +9,16 @@ Contents:
 - [Videos](#videos)
 
 
-- [Setup Guide](#setup_guide)
+- [Setup Guide](#setup-guide)
 
 
 - [Functionality](#functionality)
 
 
-- [External Libraries](#external_libraries)
+- [External Libraries](#external-libraries)
 
 
-- [References](#references_and_attributions)
+- [References](#references-and-attributions)
 
 
 
