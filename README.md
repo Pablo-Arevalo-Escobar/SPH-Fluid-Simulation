@@ -89,11 +89,14 @@ object configurations can be explored
 ## References and Attributions
 
 ### LearnOpenGL
-The camera, shader, and compute shader class used in this project are taken from the OpenGl tutorial series LearnOpenGL.
+The camera, shader, and compute shader class used in this project are taken from the OpenGl tutorial series LearnOpenGL by Joey de Vires.
 The classes have been slightly modified to provide functionality specific to my use case.
 https://learnopengl.com/Getting-started/Camera
 https://learnopengl.com/Getting-started/Shaders
 https://learnopengl.com/Guest-Articles/2022/Compute-Shaders/Introduction
+
+Code is written by Joey de Vires (LearnOpengl)
+https://twitter.com/JoeyDeVriez.
 
 LearnOpenGl code is available for use under the following liscence:
 
