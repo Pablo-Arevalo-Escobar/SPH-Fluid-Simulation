@@ -24,21 +24,23 @@ A real time, GPU-based, fluid simulation using smooth particle hydrodynamics don
 - [References](#references-and-attributions)
 
 
-
-
-## Images 
-
-![](images/FluidSim.png)
-![](images/collision.png)
-
-
 ## Videos 
 
+
+### Velocity Visualization 
+https://github.com/user-attachments/assets/80369609-8ab6-450b-aced-263d0e1a5d6b
+
+
+### Standard Visualization
 https://user-images.githubusercontent.com/63361048/215293472-1cc3614a-0f61-4051-bbd6-c7e501cec304.mp4
 
 
 https://user-images.githubusercontent.com/63361048/215293476-6ee23b1d-3c10-4e40-82f6-2c35470af15c.mp4
 
+## Images 
+
+![](images/FluidSim.png)
+![](images/collision.png)
 
 
 ## Setup Guide
